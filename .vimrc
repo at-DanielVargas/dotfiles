@@ -46,7 +46,7 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 :imap ii <Esc>
-
+imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 
 syntax enable
@@ -63,6 +63,7 @@ set wrap
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ [BUFFER=%n]\ %{strftime('%c')}
 set clipboard=unnamed
 
+let g:user_emmet_expandabbr_key='<Tab>'
 let g:coc_disable_startup_warning = 1
 let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json' ]
 
