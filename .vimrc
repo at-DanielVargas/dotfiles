@@ -35,16 +35,20 @@ let mapleader = ","
 noremap <leader>w :w<cr>
 noremap <leader>gs :CocSearch
 noremap <leader>i :Prettier<cr>
-noremap <leader>p :Files<cr>
+noremap <leader>p :GFiles<cr>
 noremap <leader>b :NERDTreeToggle<cr>
 noremap <leader><cr> <cr><c-w>h:q<cr>
 noremap <leader>s :w<cr>
 inoremap <leader>s <C-c>:w<cr>
 noremap <leader>q :q<cr>
+noremap <leader>n :tabp<cr>
+noremap <leader>m :tabn<cr>
+noremap <leader>t :tabnew<cr>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gf <Plug>(coc-fix-current)
 :imap ii <Esc>
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
@@ -65,7 +69,7 @@ set clipboard=unnamed
 
 let g:user_emmet_expandabbr_key='<Tab>'
 let g:coc_disable_startup_warning = 1
-let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json' ]
+let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-angular' ]
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
   let g:coc_global_extensions += ['coc-prettier']
@@ -80,3 +84,4 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 
 colorscheme nord
+
