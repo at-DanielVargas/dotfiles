@@ -28,6 +28,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'mileszs/ack.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
+Plug 'franbach/miramare'
+Plug 'sainnhe/sonokai'
 call plug#end()
 
 filetype plugin indent on
@@ -54,7 +56,7 @@ imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 
 syntax enable
-set background=dark
+"set background=dark
 set wildmenu
 set ttyfast
 set lazyredraw
@@ -79,9 +81,19 @@ if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
   let g:coc_global_extensions += ['coc-eslint']
 endif
 
+let g:prettier#autoformat = 1
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 
-colorscheme nord
+set termguicolors
 
+" Available values of theme sonokai : `'default'`, `'atlantis'`, `'andromeda'`, `'shusia'`, `'maia'`
+
+let g:sonokai_style = 'shusia'
+colorscheme sonokai
+
+"colorscheme miramare
+
+"colorscheme xcodedark
+"colorscheme pulumi
