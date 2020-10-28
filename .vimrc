@@ -6,7 +6,7 @@ if has("autocmd")
     "           │     └───────── Enable loading of indent file
     "           └─────────────── Enable loading of plugin files
 endif
-
+set encoding=UTF-8
 set autoindent                 " Copy indent to the new line
 
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -25,16 +25,19 @@ Plug 'preservim/nerdtree'
 Plug 'mattn/emmet-vim'
 Plug 'beanworks/vim-phpfmt'
 Plug 'shawncplus/phpcomplete.vim'
-Plug 'artanikin/vim-synthwave84'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'leafgarland/typescript-vim'
+Plug 'pangloss/vim-javascript'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'ryanoasis/vim-devicons'
+Plug 'mileszs/ack.vim'
+" Themes
+Plug 'arcticicestudio/nord-vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'arzg/vim-colors-xcode'
 Plug 'pgavlin/pulumi.vim'
-Plug 'arcticicestudio/nord-vim'
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
-Plug 'mileszs/ack.vim'
-Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
+Plug 'artanikin/vim-synthwave84'
 Plug 'franbach/miramare'
 Plug 'sainnhe/sonokai'
 Plug 'chriskempson/base16-vim'
@@ -47,7 +50,7 @@ noremap <leader>w :w<cr>
 noremap <leader>gs :CocSearch
 noremap <leader>i :Prettier<cr>
 inoremap <leader>i <C-c>:Prettier<cr>
-noremap <leader>p :GFiles<cr>
+noremap <leader>p :Files<cr>
 noremap <leader>b :NERDTreeToggle<cr>
 noremap <leader><cr> <cr><c-w>h:q<cr>
 noremap <leader>s :w<cr>
@@ -69,6 +72,7 @@ set wildmenu
 set ttyfast
 set lazyredraw
 set updatetime=300
+set autoread
 set laststatus=2
 set number
 set tabstop=4
@@ -82,19 +86,40 @@ set listchars+=trail:·         " │ Use custom symbols to
 set listchars+=eol:↴           " │ represent invisible characters
 set listchars+=nbsp:_          " ┘
 
+" controlp
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+" NERDTree
+let g:NERDTreeIgnore = ['^node_modules$']
 
+" sync open file with NERDTree
+" " Check if NERDTree is open or active
+function! IsNERDTreeOpen()
+  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
+" file, and we're not in vimdiff
+function! SyncTree()
+  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+    NERDTreeFind
+    wincmd p
+  endif
+endfunction
+
+" Highlight currently open buffer in NERDTree
+autocmd BufEnter * call SyncTree()
+
+"Prettier
 let g:prettier#autoformat = 0
 let g:prettier#config#tab_width = 4
-"none" - No trailing commas.
-"es5" - Trailing commas where valid in ES5 (objects, arrays, etc.)
-"all" - Trailing commas wherever possible (including function arguments). This requires node 8 or a transform.
 let g:prettier#config#trailing_comma = 'es5'
-autocmd BufWritePre *.html*.php,*.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md Prettier
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+"autocmd BufWritePre *.html*.php,*.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md Prettier
 
-
+"emmet
 let g:user_emmet_expandabbr_key='<Tab>'
 let g:coc_disable_startup_warning = 1
-let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-angular' ]
+let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-angular', 'coc-prettier' ]
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
   let g:coc_global_extensions += ['coc-prettier']
@@ -103,6 +128,7 @@ endif
 if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
   let g:coc_global_extensions += ['coc-eslint']
 endif
+
 
 let g:prettier#autoformat = 1
 
