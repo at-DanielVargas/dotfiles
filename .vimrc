@@ -1,5 +1,6 @@
 set nocompatible
 syntax on
+set rnu
 if has("autocmd")
     filetype plugin indent on
     "           │     │    └──── Enable file type detection
@@ -85,6 +86,9 @@ set listchars=tab:▸\           " ┐
 set listchars+=trail:·         " │ Use custom symbols to
 set listchars+=eol:↴           " │ represent invisible characters
 set listchars+=nbsp:_          " ┘
+set foldmethod=manual
+set nofoldenable
+
 
 " controlp
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
@@ -93,21 +97,21 @@ let g:NERDTreeIgnore = ['^node_modules$']
 
 " sync open file with NERDTree
 " " Check if NERDTree is open or active
-function! IsNERDTreeOpen()
-  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-endfunction
+"function! IsNERDTreeOpen()
+"  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+"endfunction
 
 " Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
 " file, and we're not in vimdiff
-function! SyncTree()
-  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-    NERDTreeFind
-    wincmd p
-  endif
-endfunction
+"function! SyncTree()
+"  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+"    NERDTreeFind
+"    wincmd p
+"  endif
+"endfunction
 
 " Highlight currently open buffer in NERDTree
-autocmd BufEnter * call SyncTree()
+"autocmd BufEnter * call SyncTree()
 
 "Prettier
 let g:prettier#autoformat = 0
@@ -132,9 +136,8 @@ endif
 
 let g:prettier#autoformat = 1
 
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
-
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 set termguicolors
 
 " Available values of theme sonokai : `'default'`, `'atlantis'`, `'andromeda'`, `'shusia'`, `'maia'`
@@ -142,8 +145,8 @@ set termguicolors
 "let g:sonokai_style = 'shusia'
 "colorscheme sonokai
 
-colorscheme synthwave84
-
+"colorscheme synthwave84
+"colorscheme dracula
 "colorscheme base16-default-dark
 "colorscheme miramare
 "colorscheme xcodedark
