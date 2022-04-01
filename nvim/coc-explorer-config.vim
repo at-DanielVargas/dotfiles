@@ -77,16 +77,16 @@ autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | end
 " autocmd BufEnter * if bufname('#') =~# "\[coc-explorer\]" && winnr('$') > 1 | b# | endif
 
 " Auto start
-augroup coc-explorer
-  if @% == '' || @% == '.'
-    autocmd User CocNvimInit bd
-    autocmd User CocNvimInit CocCommand explorer
-  endif
-augroup END
+" augroup coc-explorer
+"   if @% == '' || @% == '.'
+"     autocmd User CocNvimInit bd
+"     autocmd User CocNvimInit CocCommand explorer
+"   endif
+" augroup END
 
 " Git update
 if exists('#User#CocGitStatusChange')
   doautocmd <nomodeline> User CocGitStatusChange
 endif
 
-nnoremap <leader>b :CocCommand explorer<CR>
+nnoremap <leader>b :CocCommand explorer --preset floating<CR>
