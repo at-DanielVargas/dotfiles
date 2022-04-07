@@ -64,8 +64,8 @@ nmap <Tab> :tabnext<CR>
 
 
 " Atajos de telescope
-nnoremap <C-a> :Telescope live_grep theme=ivy<CR>
-nnoremap <C-p> :Telescope file_browser theme=ivy<CR>
+nnoremap <C-a> :Telescope live_grep theme=dropdown<CR>
+nnoremap <C-p> :Telescope find_files theme=dropdown<CR>
 nnoremap <silent> \\ :Telescope buffers<CR>
 
 
@@ -91,8 +91,10 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 " Atajo para comentarios multilinea
 
 inoremap <A-c> <Esc>:'<,'>Commentary<CR>
-
-
+vnoremap > >gv
+vnoremap < <gv
+nnoremap > >>
+nnoremap < <<
 
 
 

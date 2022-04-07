@@ -1,7 +1,6 @@
 set nocompatible " be iMproved, required
 filetype off     " required
 
-" Keep Plug commands between plug#begin() and plug#end().
 filetype plugin indent on    " required
 
 " imports "{{{
@@ -20,10 +19,8 @@ set lazyredraw
 set updatetime=300
 set hidden " Open other files if current one is not saved
 
-" Enable Mouse mode in all modes
-set mouse=a
 " Numbers
-set number
+set number relativenumber
 set numberwidth=4
 set ruler
 
@@ -71,7 +68,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 " Set default encoding to utf-8
 set encoding=utf-8
 set termencoding=utf-8
-
+set termguicolors
 " Disable backups and swap files
 set nobackup
 set nowritebackup
@@ -101,7 +98,7 @@ set backspace=indent,eol,start
 set rtp+=~/.fzf
 
 " CoC extensions
-let g:coc_global_extensions = ['coc-solargraph', 'coc-tsserver', 'coc-json']
+let g:coc_global_extensions = ['coc-phpls', 'coc-tsserver', 'coc-json']
 
 " Add CoC Prettier if prettier is installed
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
@@ -113,6 +110,8 @@ if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
   let g:coc_global_extensions += ['coc-eslint']
 endif
 
+
+let g:Hexokinase_highlighters = [ 'backgroundfull' ]
 
 " Fix some weird error with Fugitive
 let g:fugitive_pty = 0
@@ -150,6 +149,7 @@ require("telescope").setup {
 }
 
 require("telescope").load_extension "file_browser"
+require("bufferline").setup{}
 EOF
 
 
