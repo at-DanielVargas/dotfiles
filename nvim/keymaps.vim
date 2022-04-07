@@ -1,55 +1,127 @@
-let mapleader=" "
+let mapleader = " "
 
-" Guarda el archivo
-nnoremap <Leader>s :w<CR>
+" +++ Shortcuts +++
+" Open Buffer
+nnoremap <silent><leader>l :Buffers<CR>
+" Open test file for a current file
+nnoremap <silent><leader>s :A<CR>
+" Open test file for a current file in a vertical window
+nnoremap <silent><leader>v :AV<CR>
+" Vertically split screen
+nnoremap <silent><leader>sv :vs<CR>
+" Split screen
+nnoremap <silent><leader>ss :split<CR>
 
-" Cierra el archivo
-nnoremap <Leader>q :q<CR>
+" Faster saving and exiting
+nnoremap <silent><leader>w :w!<CR>
+nnoremap <silent><leader>q :q!<CR>
+nnoremap <silent><leader>x :x<CR>
+" Open Vim configuration file for editing
+nnoremap <silent><leader>2 :e ~/.vimrc<CR>
+" Source Vim configuration file and install plugins
+nnoremap <silent><leader>1 :source ~/.vimrc \| :PlugInstall<CR>
 
-"Cierra el archivo perdiendo los cambios
-nnoremap <Leader>Q :q!<CR>
+" Toggle relative line numbers
+nnoremap <leader>rn :set relativenumber!<cr>
 
-"Comenta la linea seleccionada
-nnoremap <Leader>/ :Commentary<CR>
+" Map fzf search to CTRL P
+nnoremap <leader>p :GFiles<Cr>
+" Map fzf + ag search to CTRL P
+nnoremap <leader>g :Rg <Cr>
+
+" vim-test shortcut for running tests
+nnoremap <silent><leader>; :TestNearest<CR>
+nnoremap <silent><leader>' :TestFile<CR>
+
+" Extra <CR> is for disabling /"Press ENTER or type command to continue/"
+nnoremap <silent><leader>e :Exp<CR><CR>
+
+" Easier movement between split windows CTRL + {h, j, k, l}
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>c  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Format
+nmap <leader>f   :CocCommand prettier.formatFile<CR>
 
 
-"Avanza por el archivo arriva o abajo de 10 en 10 lineas
-nnoremap <C-j> 10<C-e>
-nnoremap <C-k> 10<C-y>
 
 " Atajos para el manejo de tabs
-nmap te :tabnew<CR>
+nmap <C-t> :tabnew<CR>
 nmap <S-Tab> :tabprev<CR>
 nmap <Tab> :tabnext<CR>
 
+
 " Atajos de telescope
-nnoremap <C-a> :Telescope live_grep<CR>
-nnoremap <C-p> :Telescope find_files<CR>
+nnoremap <C-a> :Telescope live_grep theme=ivy<CR>
+nnoremap <C-p> :Telescope file_browser theme=ivy<CR>
 nnoremap <silent> \\ :Telescope buffers<CR>
-" Atajo para NeerdTree
-" nnoremap <Leader>b :call NERDTreeToggleInCurrentDir()<CR>
-
-nnoremap <Leader>w <C-w>
-map sh <C-w>h
-map sj <C-w>j
-map sk <C-w>k
-map sl <C-w>l
-
-nmap ss :split<CR><C-w>w
-nmap sv :vsplit<CR><C-w>w
 
 
 
-nnoremap <Leader>f :CocCommand prettier.formatFile<CR>
+"Comenta la linea seleccionada
+nnoremap <leader>/ :Commentary<CR>
 
 
-function! NERDTreeToggleInCurrentDir()
-" If NERDTree is open in the current buffer
-  if (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1)
-    exe ":NERDTreeClose"
-  elseif bufname('%')
-    exe ":NERDTreeFind"
-  else
-    exe ":NERDTreeCWD"
-  endif 
-endfunction
+" guarda el archivo
+nnoremap <leader>s :w<CR>
+
+"" Split
+noremap <Leader>h :<C-u>split<CR>
+noremap <Leader>v :<C-u>vsplit<CR>
+
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
+" Atajo para comentarios multilinea
+
+inoremap <A-c> <Esc>:'<,'>Commentary<CR>
+
+
+
+
+
+" php
+" Phpactor plugin
+" Include use statement
+nmap <Leader>u :call phpactor#UseAdd()<CR>
+" Invoke the context menu
+nmap <Leader>mm :call phpactor#ContextMenu()<CR>
+" Invoke the navigation menu
+nmap <Leader>nn :call phpactor#Navigate()<CR>
+" Goto definition of class or class member under the cursor
+nmap <Leader>oo :call phpactor#GotoDefinition()<CR>
+nmap <Leader>oh :call phpactor#GotoDefinition('hsplit')<CR>
+nmap <Leader>ov :call phpactor#GotoDefinition('vsplit')<CR>
+nmap <Leader>ot :call phpactor#GotoDefinition('tabnew')<CR>
+" Show brief information about the symbol under the cursor
+nmap <Leader>K :call phpactor#Hover()<CR>
+" Transform the classes in the current file
+nmap <Leader>tt :call phpactor#Transform()<CR>
+" Generate a new class (replacing the current file)
+nmap <Leader>cc :call phpactor#ClassNew()<CR>
+" Extract expression (normal mode)
+nmap <silent><Leader>ee :call phpactor#ExtractExpression(v:false)<CR>
+" Extract expression from selection
+vmap <silent><Leader>ee :<C-U>call phpactor#ExtractExpression(v:true)<CR>
+" Extract method from selection
+vmap <silent><Leader>em :<C-U>call phpactor#ExtractMethod()<CR>
+
+
+
+
