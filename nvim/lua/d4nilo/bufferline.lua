@@ -15,7 +15,7 @@ require('bufferline').setup {
         show_close_icon = false,
         enforce_regular_tabs = false,
         -- hide separators
-        separator_style = {'',''},
+        -- separator_style = {'',''},
     },
     highlights = {
         fill = {

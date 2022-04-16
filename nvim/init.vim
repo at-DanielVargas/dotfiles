@@ -36,13 +36,25 @@ set mouse=a
 call plug#begin('~/.config/nvim/plugged')
 
 " General
-Plug 'kyazdani42/nvim-web-devicons'                " Devicons
 Plug 'nvim-lualine/lualine.nvim'                   " Status line
 Plug 'akinsho/bufferline.nvim'                     " Buffers
+Plug 'kyazdani42/nvim-web-devicons'                " Devicons
 Plug 'machakann/vim-highlightedyank'               " Highlight yanked text
 Plug 'kyazdani42/nvim-tree.lua'                    " File explorer
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' } " Color scheme
 Plug 'akinsho/toggleterm.nvim'                     " Termial plugin  
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'Yggdroot/indentLine'
+Plug 'terryma/vim-multiple-cursors'
+
+" Colorschemes
+Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
+Plug 'yeddaif/neovim-purple'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'sainnhe/gruvbox-material'
+Plug 'Mofiqul/dracula.nvim'
+
 " Lsp
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
@@ -59,6 +71,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'lewis6991/gitsigns.nvim'
 " Telescope
 Plug 'nvim-lua/plenary.nvim'
+Plug 'windwp/nvim-spectre'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
@@ -73,7 +86,7 @@ lua require('d4nilo')
 " --- Colors
 
 set background=dark
-colorscheme tokyonight
+colorscheme dracula
 
 " --- Autocommands
 
