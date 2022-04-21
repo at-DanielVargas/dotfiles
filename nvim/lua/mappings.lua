@@ -1,8 +1,10 @@
-local opts = { noremap = true, silent = true }
-local term_opts = { silent = true }
+--Keymaps
+local opts = {noremap= true, silent = true}
+local term_ops = {silent = true}
 
 local keymap = vim.api.nvim_set_keymap
 
+vim.g.mapleader = " "
 -- Remaps
 
 -- Modes
@@ -18,8 +20,10 @@ local keymap = vim.api.nvim_set_keymap
 
 keymap('n', '<Leader>s', ':w<CR>', opts)
 --keymap('n', '<Leader>tr', 'v:count1 . \'ToggleTerm\'<CR>', {noremap = true, expr = true})
-keymap('n', '<Leader>f', ':PrettierAsync<CR>', {noremap = true, silent = true})
+--keymap('n', '<Leader>f', ':PrettierAsync<CR>', {noremap = true, silent = true})
 
+-- duplicate line
+keymap('n', '<C-D>', 'Yp', opts)
 
 -- text move Alt+j|k move text to (down|up)
 keymap('n', '<A-j>', ':m .+1<CR>==', opts)
@@ -40,14 +44,13 @@ keymap('n', '<Leader>ss', ':split<CR>', opts)
 keymap('n', '<Leader>sv', ':vs<CR>', opts)
 
 -- buffer tabs move
-keymap('n', '<Leader>[', ':BufferLineCyclePrev<CR>', opts)
-keymap('n', '<Leader>]', ':BufferLineCycleNext<CR>', opts)
+keymap('n', '<Tab>', ':BufferLineCyclePrev<CR>', opts)
+keymap('n', '<S-Tab>', ':BufferLineCycleNext<CR>', opts)
 keymap('n', '<Leader>q', ':bdelete<CR>', opts)
 
 -- telescope
 keymap('n', '<Leader>af', ':lua require\'telescope.builtin\'.live_grep()<Cr>', opts)
-keymap('n', '<Leader>p', ':lua require\'d4nilo.telescope\'.project_files()<Cr>', opts)
-keymap('n', '<Leader>df', ':lua require\'d4nilo.telescope\'.search_dotfiles()<Cr>', opts)
+keymap('n', '<Leader>p', ':lua require\'telescope.builtin\'.find_files()<Cr>', opts)
 keymap('n', '\\', ':lua require\'telescope.builtin\'.buffers()<CR>', opts)
 
 -- search
@@ -61,6 +64,9 @@ keymap('v', '<A-j>', ':m \'>+1<CR>gv=gv', opts)
 keymap('v', '<A-k>', ':m \'<-2<CR>gv=gv', opts)
 
 ---------- INSERT ----------
+
+-- duplicate line
+keymap('i', '<C-D>', '<ESC> Ypi', opts)
 
 -- text move Alt+j|k move text to (down|up) 
 keymap('i', '<A-j>', '<Esc>:m .+1<CR>==gi', opts)
