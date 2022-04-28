@@ -5,21 +5,19 @@ local lSsources = {
   null_ls.builtins.formatting.eslint.with({
     filetypes = {
       "javascript",
-      "typescript",
-      "css",
-      "scss",
-      "html",
-      "json",
-      "yaml",
-      "markdown",
-      "graphql",
-      "md",
-      "txt",
     },
   }),
   null_ls.builtins.formatting.stylua.with({
     args = { "--indent-width", "2", "--indent-type", "Spaces", "-" },
   }),
+	null_ls.builtins.formatting.prettier.with({
+		filetypes = {
+      "typescript",
+			"html",
+			"scss",
+			"css"
+		}
+	})
 }
 require("null-ls").setup({
   sources = lSsources,

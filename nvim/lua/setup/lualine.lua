@@ -41,7 +41,7 @@ local function getWords()
   require("lualine").setup({
     options = {
       icons_enabled = true,
-      theme = "auto",
+      theme = "pywal-nvim",
       component_separators = { " ", " " },
       section_separators = { left = "", right = "" },
       disabled_filetypes = {},

@@ -15,5 +15,9 @@ opt.listchars = { tab = " ", trail = "·" }
 opt.title = true
 opt.wrap = true
 opt.mouse = "a"
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.expandtab = true
 
-vim.cmd([[colorscheme daycula]])
+
+vim.cmd([[colorscheme pywal]])

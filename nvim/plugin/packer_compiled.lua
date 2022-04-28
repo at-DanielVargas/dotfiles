@@ -79,6 +79,11 @@ _G.packer_plugins = {
     path = "/Users/d4nilo/.local/share/nvim/site/pack/packer/opt/Comment.nvim",
     url = "https://github.com/numToStr/Comment.nvim"
   },
+  LuaSnip = {
+    loaded = true,
+    path = "/Users/d4nilo/.local/share/nvim/site/pack/packer/start/LuaSnip",
+    url = "https://github.com/L3MON4D3/LuaSnip"
+  },
   ["auto-session"] = {
     loaded = true,
     path = "/Users/d4nilo/.local/share/nvim/site/pack/packer/start/auto-session",
@@ -88,6 +93,12 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/d4nilo/.local/share/nvim/site/pack/packer/start/bufdelete.nvim",
     url = "https://github.com/famiu/bufdelete.nvim"
+  },
+  ["bufferline.nvim"] = {
+    config = { 'require("setup/bufferline")' },
+    loaded = true,
+    path = "/Users/d4nilo/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
+    url = "https://github.com/akinsho/bufferline.nvim"
   },
   ["cmd-parser.nvim"] = {
     loaded = true,
@@ -139,10 +150,18 @@ _G.packer_plugins = {
     path = "/Users/d4nilo/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
     url = "https://github.com/hrsh7th/cmp-vsnip"
   },
-  ["daycula-vim"] = {
+  cmp_luasnip = {
     loaded = true,
-    path = "/Users/d4nilo/.local/share/nvim/site/pack/packer/start/daycula-vim",
-    url = "https://github.com/ghifarit53/daycula-vim"
+    path = "/Users/d4nilo/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
+    url = "https://github.com/saadparwaiz1/cmp_luasnip"
+  },
+  ["gitsigns.nvim"] = {
+    config = { 'require("setup/gitsigns")' },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/Users/d4nilo/.local/share/nvim/site/pack/packer/opt/gitsigns.nvim",
+    url = "https://github.com/lewis6991/gitsigns.nvim"
   },
   ["lspkind-nvim"] = {
     loaded = true,
@@ -187,6 +206,12 @@ _G.packer_plugins = {
     path = "/Users/d4nilo/.local/share/nvim/site/pack/packer/start/nvim-spectre",
     url = "https://github.com/windwp/nvim-spectre"
   },
+  ["nvim-tree.lua"] = {
+    config = { 'require("setup/nvim-tree")' },
+    loaded = true,
+    path = "/Users/d4nilo/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
+    url = "https://github.com/kyazdani42/nvim-tree.lua"
+  },
   ["nvim-treesitter"] = {
     config = { 'require("setup/treesitter")' },
     loaded = true,
@@ -197,11 +222,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/d4nilo/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects",
     url = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
-  },
-  ["nvim-ts-autotag"] = {
-    loaded = true,
-    path = "/Users/d4nilo/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag",
-    url = "https://github.com/windwp/nvim-ts-autotag"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
@@ -222,6 +242,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/d4nilo/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
+  },
+  pywal = {
+    loaded = true,
+    path = "/Users/d4nilo/.local/share/nvim/site/pack/packer/start/pywal",
+    url = "https://github.com/AlphaTechnolog/pywal.nvim"
   },
   ["range-highlight.nvim"] = {
     config = { 'require("setup/range-highlight")' },
@@ -274,6 +299,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/d4nilo/.local/share/nvim/site/pack/packer/start/vim-vsnip-integ",
     url = "https://github.com/hrsh7th/vim-vsnip-integ"
+  },
+  ["wal.vim"] = {
+    loaded = true,
+    path = "/Users/d4nilo/.local/share/nvim/site/pack/packer/start/wal.vim",
+    url = "https://github.com/dylanaraps/wal.vim"
   }
 }
 
@@ -306,30 +336,38 @@ if not vim.g.packer_custom_loader_enabled then
   vim.g.packer_custom_loader_enabled = true
 end
 
--- Config for: toggleterm.nvim
-time([[Config for toggleterm.nvim]], true)
-require("setup/toggleterm")
-time([[Config for toggleterm.nvim]], false)
--- Config for: session-lens
-time([[Config for session-lens]], true)
-require("setup/session")
-time([[Config for session-lens]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-require("setup/treesitter")
-time([[Config for nvim-treesitter]], false)
--- Config for: null-ls.nvim
-time([[Config for null-ls.nvim]], true)
-require("setup/null-ls")
-time([[Config for null-ls.nvim]], false)
--- Config for: nvim-lspconfig
-time([[Config for nvim-lspconfig]], true)
-require("setup/lsp")
-time([[Config for nvim-lspconfig]], false)
 -- Config for: range-highlight.nvim
 time([[Config for range-highlight.nvim]], true)
 require("setup/range-highlight")
 time([[Config for range-highlight.nvim]], false)
+-- Config for: nvim-lspconfig
+time([[Config for nvim-lspconfig]], true)
+require("setup/lsp")
+time([[Config for nvim-lspconfig]], false)
+-- Config for: session-lens
+time([[Config for session-lens]], true)
+require("setup/session")
+time([[Config for session-lens]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+require("setup/nvim-tree")
+time([[Config for nvim-tree.lua]], false)
+-- Config for: null-ls.nvim
+time([[Config for null-ls.nvim]], true)
+require("setup/null-ls")
+time([[Config for null-ls.nvim]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+require("setup/treesitter")
+time([[Config for nvim-treesitter]], false)
+-- Config for: bufferline.nvim
+time([[Config for bufferline.nvim]], true)
+require("setup/bufferline")
+time([[Config for bufferline.nvim]], false)
+-- Config for: toggleterm.nvim
+time([[Config for toggleterm.nvim]], true)
+require("setup/toggleterm")
+time([[Config for toggleterm.nvim]], false)
 -- Config for: nvim-cmp
 time([[Config for nvim-cmp]], true)
 require("setup/cmp")
@@ -359,6 +397,7 @@ vim.cmd [[au!]]
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
 vim.cmd [[au VimEnter * ++once lua require("packer.load")({'lualine.nvim'}, { event = "VimEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au BufReadPre * ++once lua require("packer.load")({'gitsigns.nvim'}, { event = "BufReadPre *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 if should_profile then save_profiles(1) end

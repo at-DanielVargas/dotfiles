@@ -21,6 +21,7 @@ vim.g.mapleader = " "
 keymap('n', '<Leader>s', ':w<CR>', opts)
 --keymap('n', '<Leader>tr', 'v:count1 . \'ToggleTerm\'<CR>', {noremap = true, expr = true})
 --keymap('n', '<Leader>f', ':PrettierAsync<CR>', {noremap = true, silent = true})
+keymap('n', '<Leader>f', ':lua vim.lsp.buf.formatting()<CR>', opts)
 
 -- duplicate line
 keymap('n', '<C-D>', 'Yp', opts)
@@ -56,6 +57,22 @@ keymap('n', '\\', ':lua require\'telescope.builtin\'.buffers()<CR>', opts)
 -- search
 keymap('n', '<Leader>b', ':lua require\'spectre\'.open_file_search()<Cr>', opts)
 keymap('n', '<A-s>', ':lua require\'spectre\'.open()<Cr>', opts)
+
+
+-- lsp actions
+keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+keymap('n', '<space>d', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 
 ---------- VISUAL ----------
 

@@ -28,7 +28,9 @@ return require("packer").startup({
       
       use("wbthomason/packer.nvim")
 
-      use({"ghifarit53/daycula-vim"})
+      -- use({"ghifarit53/daycula-vim"})
+
+			use({ 'AlphaTechnolog/pywal.nvim', as = 'pywal', requires = {"dylanaraps/wal.vim"} })
 
       use({ "kyazdani42/nvim-web-devicons" })
       
@@ -37,12 +39,23 @@ return require("packer").startup({
         config = get_setup("toggleterm")
       })
 
+      use({"L3MON4D3/LuaSnip"})
+      use({"saadparwaiz1/cmp_luasnip"})
+
       use({
         "nvim-lualine/lualine.nvim",
         config = get_setup("lualine"),
         event = "VimEnter",
         requires = { "kyazdani42/nvim-web-devicons", opt = true },
       })
+
+      use({ "akinsho/bufferline.nvim", tag = "*", requires = "kyazdani42/nvim-web-devicons", config = get_setup("bufferline") })
+
+			use({
+				"kyazdani42/nvim-tree.lua",
+				requires = "kyazdani42/nvim-web-devicons",
+				config = get_setup("nvim-tree")
+			})
 
       use({
         "nvim-treesitter/nvim-treesitter",
@@ -71,6 +84,13 @@ return require("packer").startup({
         config = get_setup("cmp"),
       })
 
+			use({
+      "lewis6991/gitsigns.nvim",
+      	requires = { "nvim-lua/plenary.nvim" },
+      	event = "BufReadPre",
+      	config = get_setup("gitsigns"),
+    	})
+
       use({ "jose-elias-alvarez/null-ls.nvim", config = get_setup("null-ls") })
 
       use({ "neovim/nvim-lspconfig", config = get_setup("lsp") })
@@ -98,7 +118,7 @@ return require("packer").startup({
       use({ "onsails/lspkind-nvim", requires = { { "famiu/bufdelete.nvim" } } })
       use({ "tpope/vim-surround" })
 
-      use({ "windwp/nvim-ts-autotag" })
+      -- use({ "windwp/nvim-ts-autotag" })
       use({
         "rmagatti/session-lens",
         requires = { "rmagatti/auto-session", "nvim-telescope/telescope.nvim" },
