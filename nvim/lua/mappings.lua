@@ -21,7 +21,7 @@ vim.g.mapleader = " "
 keymap('n', '<Leader>s', ':w<CR>', opts)
 --keymap('n', '<Leader>tr', 'v:count1 . \'ToggleTerm\'<CR>', {noremap = true, expr = true})
 --keymap('n', '<Leader>f', ':PrettierAsync<CR>', {noremap = true, silent = true})
-keymap('n', '<Leader>f', ':lua vim.lsp.buf.formatting()<CR>', opts)
+keymap('n', '<Leader>f', ':lua vim.lsp.buf.format()<CR>', opts)
 
 -- duplicate line
 keymap('n', '<C-D>', 'Yp', opts)

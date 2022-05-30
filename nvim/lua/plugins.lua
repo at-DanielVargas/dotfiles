@@ -28,9 +28,11 @@ return require("packer").startup({
       
       use("wbthomason/packer.nvim")
 
-      -- use({"ghifarit53/daycula-vim"})
+      use({"ghifarit53/daycula-vim"})
+      use({"shaeinst/roshnivim-cs"})
+      use({"Yggdroot/indentLine"})
 
-			use({ 'AlphaTechnolog/pywal.nvim', as = 'pywal', requires = {"dylanaraps/wal.vim"} })
+		  use({ "AlphaTechnolog/pywal.nvim", as = 'pywal', requires = {"dylanaraps/wal.vim"} })
 
       use({ "kyazdani42/nvim-web-devicons" })
       
@@ -92,6 +94,8 @@ return require("packer").startup({
     	})
 
       use({ "jose-elias-alvarez/null-ls.nvim", config = get_setup("null-ls") })
+
+      use({"williamboman/nvim-lsp-installer"})
 
       use({ "neovim/nvim-lspconfig", config = get_setup("lsp") })
 

@@ -28,7 +28,8 @@ require("nvim-treesitter.configs").setup({
 		"scss",
 		"css",
 		"dockerfile",
-		"go",
 		"lua",
-		"rust"
-	}, highlight = { enable = true } })
+		"rust",
+    "html",
+    "json"
+	}, highlight = { enable = true, disable = {"html", "json"}, } })

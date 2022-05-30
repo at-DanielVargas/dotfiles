@@ -1,6 +1,6 @@
 local opt = vim.opt
 
-opt.termguicolors = true
+opt.termguicolors = false
 opt.clipboard = "unnamedplus"
 opt.completeopt = "menu,menuone,noselect"
 opt.cursorline = true
@@ -20,4 +20,8 @@ opt.shiftwidth = 2
 opt.expandtab = true
 
 
-vim.cmd([[colorscheme pywal]])
+--vim.cmd([[colorscheme rvcs]])
+-- vim.cmd([[colorscheme daycula]])
+vim.cmd([[
+  let g:indentLine_setConceal = 0
+]])

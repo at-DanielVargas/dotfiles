@@ -1,75 +1,33 @@
 -- LSP this is needed for LSP completions in CSS along with the snippets plugin
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-  properties = {
-    "documentation",
-    "detail",
-    "additionalTextEdits",
-  },
-}
 
--- Different machine VAR for office
-local envMachine = os.getenv("MACHINE")
-if envMachine == "work" then
-  machineCmd =
-    "/System/Volumes/Data/usr/local/lib/node_modules/vscode-langservers-extracted/bin/vscode-css-language-server"
-else
-  machineCmd = "vscode-css-language-server"
+
+local on_attach = function(client, bufnr)
 end
 
--- LSP Server config
-require("lspconfig").cssls.setup({
-  cmd = { machineCmd, "--stdio" },
-  settings = {
-    scss = {
-      lint = {
-        idSelector = "warning",
-        zeroUnits = "warning",
-        duplicateProperties = "warning",
-      },
-      completion = {
-        completePropertyWithSemicolon = true,
-        triggerPropertyValueCompletion = true,
-      },
-    },
-  },
-  capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-  on_attach = function(client)
-    client.resolved_capabilities.document_formatting = false
-  end,
-})
+local servers = {"tsserver", "html", "pyright"}
 
 
 
-require("lspconfig").tsserver.setup({
-  capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-  on_attach = function(client)
-    client.resolved_capabilities.document_formatting = false
-  end,
-})
+require("nvim-lsp-installer").setup {
+  ensure_installed = servers
+}
 
-require("lspconfig").html.setup({
+for _, lsp in pairs(servers) do
+  require("lspconfig")[lsp].setup {
+    capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities),
+    on_attach = on_attach,
+  }
+end
 
-  capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-  on_attach = function(client)
-    client.resolved_capabilities.document_formatting = false
-  end,
-})
 
-require("lspconfig").gopls.setup({
-	capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-	on_attach = function (client)
-		client.resolved_capabilities.document_formatting = false
-	end,
-})
+-- require("lspconfig").tsserver.setup({
+--   capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+--   on_attach = function(client)
+--     client.resolved_capabilities.document_formatting = false
+--   end,
+-- })
 
-require("lspconfig").pyright.setup({
-  capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-  on_attach = function (client)
-    client.resolved_capabilities.document_formatting = false
-  end,
-})
 -- LSP Prevents inline buffer annotations
 vim.diagnostic.open_float()
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
