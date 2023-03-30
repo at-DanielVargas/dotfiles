@@ -7,14 +7,14 @@ require("toggleterm").setup {
       return vim.o.columns * 0.4
     end
   end,
-  open_mapping = [[<F12>]],
+  open_mapping = [[<c-\>]],
   ---@diagnostic disable-next-line: unused-local
   on_open = function(term)
-    require('shade').toggle();
+    -- require('shade').toggle();
   end,
   ---@diagnostic disable-next-line: unused-local
   on_close = function(term)
-    require('shade').toggle();
+    -- require('shade').toggle();
   end,
   highlights = {
     -- highlights which map to a highlight group name and a table of it's values
@@ -37,7 +37,7 @@ require("toggleterm").setup {
   start_in_insert = true,
   insert_mappings = true, -- whether or not the open mapping applies in insert mode
   persist_size = true,
-  direction = 'horizontal', -- | 'horizontal' | 'window' | 'float',
+  direction = 'float', -- | 'horizontal' | 'window' | 'float',
   close_on_exit = true, -- close the terminal window when the process exits
   shell = vim.o.shell, -- change the default shell
   -- This field is only relevant if direction is set to 'float'
@@ -47,7 +47,7 @@ require("toggleterm").setup {
     -- the 'curved' border is a custom border type
     -- not natively supported but implemented in this plugin.
     border = 'curved', -- single/double/shadow/curved
-    width = math.floor(0.7 * vim.fn.winwidth(0)),
+    width = math.floor(0.8 * vim.fn.winwidth(0)),
     height = math.floor(0.8 * vim.fn.winheight(0)),
     winblend = 4,
   },

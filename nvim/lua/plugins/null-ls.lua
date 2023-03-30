@@ -6,5 +6,13 @@ require("mason-null-ls").setup({
     automatic_setup = true, -- Recommended, but optional
 })
 
-require("null-ls").setup()
+local null_ls = require('null-ls');
+
+
+null_ls.setup({
+  sources = {
+    null_ls.builtins.formatting.prettier,
+    null_ls.builtins.diagnostics.eslint,
+  }
+})
 require "mason-null-ls".setup_handlers() -- If `automatic_setup` is true.

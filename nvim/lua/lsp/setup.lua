@@ -25,7 +25,6 @@ mason_lsp.setup({
     "html",
     "jsonls",
     "lua_ls",
-    "tailwindcss",
     "tsserver",
     "volar",
     "prismals",
@@ -79,14 +78,6 @@ if typescript_ok then
   })
 end
 
-lspconfig.tailwindcss.setup({
-  capabilities = require("lsp.servers.tailwindcss").capabilities,
-  filetypes = require("lsp.servers.tailwindcss").filetypes,
-  handlers = handlers,
-  init_options = require("lsp.servers.tailwindcss").init_options,
-  on_attach = require("lsp.servers.tailwindcss").on_attach,
-  settings = require("lsp.servers.tailwindcss").settings,
-})
 
 lspconfig.cssls.setup({
   capabilities = capabilities,
